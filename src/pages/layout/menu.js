@@ -41,7 +41,7 @@ const menu = [
     key: '/form',
     subs: [
       { title: '基础表单', key: '/form/base-form', Icon: '' },
-      { title: '步骤表单', key: '/form/step-form', Icon: '' },
+      { title: '步骤表单', key: '/form/steps-form', Icon: '' },
     ],
     Icon: FormOutlined,
   },

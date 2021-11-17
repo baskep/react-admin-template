@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { Layout, Row, Col, Button, Divider, Tooltip } from 'antd'
-import { CloudDownloadOutlined, CloudOutlined, LeftOutlined, RightOutlined, SearchOutlined } from '@ant-design/icons'
+import {
+  CloudDownloadOutlined,
+  CloudOutlined,
+  LeftOutlined,
+  RightOutlined,
+  SearchOutlined,
+} from '@ant-design/icons'
 
 import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
 
@@ -41,7 +47,12 @@ const ButtonView = () => {
               <Button type="primary" loading={loading} onClick={() => setloading(true)}>
                 Click me!
               </Button>
-              <Button type="primary" icon="poweroff" loading={iconLoading} onClick={() => setIconLoading(true)}>
+              <Button
+                type="primary"
+                icon="poweroff"
+                loading={iconLoading}
+                onClick={() => setIconLoading(true)}
+              >
                 Click me!
               </Button>
               <Button type="primary" loading />
