@@ -52,14 +52,16 @@ const CustomMenu = (props) => {
     })
   }
 
-  const renderMenuItem = ({ key, title, Icon }) => (
-    <Menu.Item key={key}>
-      <Link to={key}>
-        {Icon && <Icon />}
-        <span>{title}</span>
-      </Link>
-    </Menu.Item>
-  )
+  const renderMenuItem = ({ key, title, Icon }) => {
+    return (
+      <Menu.Item key={key}>
+        <Link to={key}>
+          {Icon && <Icon />}
+          <span>{title}</span>
+        </Link>
+      </Menu.Item>
+    )
+  }
 
   // 循环遍历数组中的子项 subs ，生成子级 menu
   const renderSubMenu = ({ key, title, subs, Icon }) => {

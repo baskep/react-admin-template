@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
-import { GithubOutlined } from '@ant-design/icons'
 import CustomMenu from '@/components/layout/custom-menu.jsx'
+import logo from '@/assets/images/logo.svg'
 
 const { Sider } = Layout
 
@@ -11,8 +11,12 @@ const CustomAside = (props) => {
   return (
     <Sider className="aside" collapsed={menuToggle}>
       <div className="logo">
-        <a rel="noopener noreferrer" href="https://github.com/xtid" target="_blank">
-          <GithubOutlined style={{ fontSize: '38px', color: '#fff' }} />
+        <a
+          rel="noopener noreferrer"
+          href="https://github.com/xitd/react-admin-template"
+          target="_blank"
+        >
+          <img src={logo} alt="logo" />
         </a>
       </div>
       <CustomMenu menu={menu}></CustomMenu>

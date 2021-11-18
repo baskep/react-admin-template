@@ -19,22 +19,22 @@ const CustomHeader = (props) => {
     <Menu>
       <Menu.ItemGroup title="用户设置">
         <Menu.Divider />
-        <Menu.Item>
+        <Menu.Item key="personel-setting">
           <EditOutlined />
-          个人设置
+          &nbsp; 个人设置
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="system-setting">
           <SettingOutlined />
-          系统设置
+          &nbsp; 系统设置
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="login-out">
+          <span onClick={onLoginOut}>
+            <LoginOutlined />
+            &nbsp; 退出登录
+          </span>
         </Menu.Item>
       </Menu.ItemGroup>
-      <Menu.Divider />
-      <Menu.Item>
-        <span onClick={onLoginOut}>
-          <LoginOutlined />
-          退出登录
-        </span>
-      </Menu.Item>
     </Menu>
   )
   return (
@@ -48,17 +48,18 @@ const CustomHeader = (props) => {
       </div>
       <div className="right">
         <div className="mr15">
-          <a
-            rel="noopener noreferrer"
-            href="https://github.com/xitd/react-admin-template"
-            target="_blank"
-          >
+          <a rel="noopener noreferrer" href="https://github.com/xitd" target="_blank">
             <GithubOutlined style={{ color: '#000' }} />
           </a>
         </div>
         <div className="mr15">
           <Badge dot={true} offset={[-2, 0]}>
-            <a href="https://github.com/xitd/react-admin-template" style={{ color: '#000' }}>
+            <a
+              href="https://github.com/xitd/react-admin-template"
+              target="_blank"
+              style={{ color: '#000' }}
+              rel="noreferrer"
+            >
               <BellOutlined />
             </a>
           </Badge>
@@ -66,7 +67,13 @@ const CustomHeader = (props) => {
         <div>
           <Dropdown overlay={menu} overlayStyle={{ width: '200px' }}>
             <div className="ant-dropdown-link">
-              <Avatar src={avatar} alt="avatar" style={{ cursor: 'pointer' }} />
+              <Avatar
+                src={avatar}
+                alt="avatar"
+                style={{ cursor: 'pointer' }}
+                shape="square"
+                size="small"
+              />
             </div>
           </Dropdown>
         </div>

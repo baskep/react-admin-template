@@ -4,7 +4,6 @@ import loadable from '@/utils/loadable'
 
 import 'animate.css'
 import 'antd/dist/antd.less'
-
 import '@/assets/css/base.less'
 import '@/assets/css/app.less'
 
