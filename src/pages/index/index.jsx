@@ -9,11 +9,11 @@ import {
   FullscreenOutlined,
 } from '@ant-design/icons'
 
-import BarEcharts from '../../components/index/bar.jsx'
-import PieEcharts from '../../components/index/pie.jsx'
-import LineEcharts from '../../components/index/line.jsx'
-import ScatterEcharts from '../../components/index/scatter.jsx'
-import PictorialBarEcharts from '../../components/index/pictorial-bar.jsx'
+import BarEcharts from '@/components/index/bar.jsx'
+import PieEcharts from '@/components/index/pie.jsx'
+import LineEcharts from '@/components/index/line.jsx'
+import ScatterEcharts from '@/components/index/scatter.jsx'
+import PictorialBarEcharts from '@/components/index/pictorial-bar.jsx'
 
 import './index.scss'
 

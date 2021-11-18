@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Divider, Row, Col, Collapse } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 const { Panel } = Collapse
 
 const text = `

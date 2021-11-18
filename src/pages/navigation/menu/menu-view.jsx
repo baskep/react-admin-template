@@ -12,7 +12,7 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 const { SubMenu } = Menu
 
 const MenuView = () => {

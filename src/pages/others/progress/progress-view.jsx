@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Layout, Row, Col, Progress, Divider, Button } from 'antd'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import './index.scss'
 

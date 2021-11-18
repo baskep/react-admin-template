@@ -3,7 +3,7 @@ import { Layout, Row, Col, Upload, message, Button, Divider, Modal } from 'antd'
 
 import { LoadingOutlined, PlusOutlined, UploadOutlined, InboxOutlined } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import './index.scss'
 

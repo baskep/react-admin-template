@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Layout, Divider, Row, Col, Tabs, Select, Radio, Button } from 'antd'
 import { AndroidOutlined } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import './index.scss'
 

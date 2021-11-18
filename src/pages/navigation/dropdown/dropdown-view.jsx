@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Divider, Menu, Dropdown, Row, Col, message, Button } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 import './index.scss'
 
 const { SubMenu } = Menu

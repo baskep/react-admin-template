@@ -48,7 +48,7 @@ import Icon, {
   TwitterOutlined,
 } from '@ant-design/icons'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import './index.scss'
 

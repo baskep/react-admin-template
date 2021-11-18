@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import loadable from './utils/loadable'
+import loadable from '@/utils/loadable'
 
 import 'antd/dist/antd.css'
 import 'animate.css'

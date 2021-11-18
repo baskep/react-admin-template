@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import BraftEditor from 'braft-editor'
 import { Layout, Divider } from 'antd'
 
-import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
+import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import 'braft-editor/dist/index.css'
 import './index.scss'
