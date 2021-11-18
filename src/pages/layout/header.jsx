@@ -50,7 +50,7 @@ const CustomHeader = (props) => {
         <div className="mr15">
           <a
             rel="noopener noreferrer"
-            href="https://github.com/ltadpoles/react-admin"
+            href="https://github.com/xitd/react-admin-template"
             target="_blank"
           >
             <GithubOutlined style={{ color: '#000' }} />
@@ -58,7 +58,7 @@ const CustomHeader = (props) => {
         </div>
         <div className="mr15">
           <Badge dot={true} offset={[-2, 0]}>
-            <a href="https://github.com/ltadpoles/react-admin" style={{ color: '#000' }}>
+            <a href="https://github.com/xitd/react-admin-template" style={{ color: '#000' }}>
               <BellOutlined />
             </a>
           </Badge>
