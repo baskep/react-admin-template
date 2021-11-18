@@ -3,6 +3,9 @@ import { Layout, Divider, Row, Col, Collapse } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
+
+import './index.less'
+
 const { Panel } = Collapse
 
 const text = `

@@ -4,7 +4,7 @@ import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const { Step } = Steps
 

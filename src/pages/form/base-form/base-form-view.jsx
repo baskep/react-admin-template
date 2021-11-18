@@ -20,7 +20,7 @@ import {
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const { Option } = Select
 

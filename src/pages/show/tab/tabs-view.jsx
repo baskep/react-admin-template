@@ -4,7 +4,7 @@ import { AndroidOutlined } from '@ant-design/icons'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const { TabPane } = Tabs
 const { Option } = Select

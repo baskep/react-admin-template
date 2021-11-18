@@ -6,7 +6,7 @@ import avatar from '@/assets/images/avatar.jpg'
 import routes from '@/routes'
 import menus from './menu'
 
-import './index.scss'
+import './index.less'
 
 import CustomAside from './aside.jsx'
 import CustomHeader from './header'

@@ -3,7 +3,7 @@ import { Layout, Divider } from 'antd'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const AboutView = () => (
   <Layout>

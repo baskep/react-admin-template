@@ -15,7 +15,7 @@ import LineEcharts from '@/components/index/line.jsx'
 import ScatterEcharts from '@/components/index/scatter.jsx'
 import PictorialBarEcharts from '@/components/index/pictorial-bar.jsx'
 
-import './index.scss'
+import './index.less'
 
 const Index = () => {
   const fullToggle = () => {

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Layout, Divider, Row, Col, Steps, Button, Form, Input, Select, Result } from 'antd'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
-import './index.scss'
+
+import './index.less'
 
 const { Step } = Steps
 const { Option } = Select

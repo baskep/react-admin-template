@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react'
 import { Layout, Divider, Table, Button } from 'antd'
+
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const columns = [
   {

@@ -5,7 +5,7 @@ import { Layout, Divider } from 'antd'
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
 import 'braft-editor/dist/index.css'
-import './index.scss'
+import './index.less'
 
 const EditorView = () => {
   const [state, setState] = useState({

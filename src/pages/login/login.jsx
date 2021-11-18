@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Layout, Input, Form, Button, Divider, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 
-import './index.scss'
+import './index.less'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)

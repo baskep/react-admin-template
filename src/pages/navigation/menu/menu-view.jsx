@@ -13,6 +13,9 @@ import {
 } from '@ant-design/icons'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
+
+import './index.less'
+
 const { SubMenu } = Menu
 
 const MenuView = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import img500 from '@/assets/images/500.png'
 
-import './index.scss'
+import './index.less'
 
 const View500 = () => (
   <div style={{ textAlign: 'center' }}>

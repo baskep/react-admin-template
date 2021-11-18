@@ -2,10 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import loadable from '@/utils/loadable'
 
-import 'antd/dist/antd.css'
 import 'animate.css'
-import './assets/css/base.scss'
-import './assets/css/app.scss'
+import 'antd/dist/antd.less'
+
+import '@/assets/css/base.less'
+import '@/assets/css/app.less'
 
 const View404 = loadable(() => import(/* webpackChunkName: '404' */ './pages/others/404'))
 const View500 = loadable(() => import(/* webpackChunkName: '500' */ './pages/others/500'))

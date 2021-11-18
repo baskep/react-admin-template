@@ -3,7 +3,7 @@ import { Layout, Divider, Row, Col, Button, Tabs } from 'antd'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const { TabPane } = Tabs
 const typeIn = [

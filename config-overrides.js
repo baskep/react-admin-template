@@ -1,13 +1,20 @@
-const { override, fixBabelImports, addWebpackAlias } = require('customize-cra')
+const { override, fixBabelImports, addWebpackAlias, addLessLoader } = require('customize-cra')
 const path = require('path')
 
-console.log(path.resolve(__dirname, 'src'))
 module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
     style: 'css',
   }),
+  // 使用less-loader对源码中的less的变量进行重新指定
+  addLessLoader({
+    javascriptEnabled: true,
+    modifyVars: {
+      '@primary-color': '#f0f0f0',
+    },
+  }),
+
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src'),
   })

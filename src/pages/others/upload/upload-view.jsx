@@ -5,7 +5,7 @@ import { LoadingOutlined, PlusOutlined, UploadOutlined, InboxOutlined } from '@a
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import './index.scss'
+import './index.less'
 
 const { Dragger } = Upload
 
