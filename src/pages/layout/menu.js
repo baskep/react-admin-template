@@ -5,7 +5,6 @@ import {
   FormOutlined,
   PieChartOutlined,
   PaperClipOutlined,
-  BarsOutlined,
   UserOutlined,
 } from '@ant-design/icons'
 
@@ -52,7 +51,7 @@ const menu = [
       { title: '表格', key: '/show/table', Icon: '' },
       { title: '折叠面板', key: '/show/collapse', Icon: '' },
       { title: '树形控件', key: '/show/tree', Icon: '' },
-      { title: '标签页', key: '/show/tabs', Icon: '' },
+      { title: '标签页', key: '/show/tab', Icon: '' },
     ],
     Icon: PieChartOutlined,
   },
@@ -69,19 +68,6 @@ const menu = [
       { title: '500', key: '/500', Icon: '' },
     ],
     Icon: PaperClipOutlined,
-  },
-  {
-    title: '多级导航',
-    key: '/one',
-    subs: [
-      {
-        title: '二级',
-        key: '/one/two',
-        Icon: '',
-        subs: [{ title: '三级', key: '/one/two/three', Icon: '' }],
-      },
-    ],
-    Icon: BarsOutlined,
   },
   {
     title: '关于',
