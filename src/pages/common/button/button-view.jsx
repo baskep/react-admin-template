@@ -6,6 +6,7 @@ import {
   LeftOutlined,
   RightOutlined,
   SearchOutlined,
+  PoweroffOutlined,
 } from '@ant-design/icons'
 
 import CustomBreadcrumb from '../../../components/layout/custom-breadcrumb'
@@ -49,7 +50,7 @@ const ButtonView = () => {
               </Button>
               <Button
                 type="primary"
-                icon="poweroff"
+                icon={<PoweroffOutlined />}
                 loading={iconLoading}
                 onClick={() => setIconLoading(true)}
               >

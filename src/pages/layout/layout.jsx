@@ -59,7 +59,7 @@ const CustomLayout = () => {
     dispatch({ type: 'menuToggle' })
   }
 
-  const handleloginOut = () => {
+  const handleLoginOut = () => {
     localStorage.clear()
     history.push('/login')
     message.success('登出成功!')
@@ -107,7 +107,7 @@ const CustomLayout = () => {
           menuToggle={state.menuToggle}
           onMenuClick={handleMenuClick}
           avatar={avatar}
-          onLoginOut={handleloginOut}
+          onLoginOut={handleLoginOut}
         />
         <Content className="content">
           <Switch>

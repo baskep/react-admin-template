@@ -41,9 +41,9 @@ const CustomHeader = (props) => {
     <Header className="header">
       <div className="left">
         {menuToggle ? (
-          <MenuUnfoldOutlined style={{ fontSize: '2rem' }} onClick={onMenuClick} />
+          <MenuUnfoldOutlined style={{ fontSize: '20px' }} onClick={onMenuClick} />
         ) : (
-          <MenuFoldOutlined style={{ fontSize: '2rem' }} onClick={onMenuClick} />
+          <MenuFoldOutlined style={{ fontSize: '20px' }} onClick={onMenuClick} />
         )}
       </div>
       <div className="right">
@@ -64,7 +64,7 @@ const CustomHeader = (props) => {
           </Badge>
         </div>
         <div>
-          <Dropdown overlay={menu} overlayStyle={{ width: '20rem' }}>
+          <Dropdown overlay={menu} overlayStyle={{ width: '200px' }}>
             <div className="ant-dropdown-link">
               <Avatar src={avatar} alt="avatar" style={{ cursor: 'pointer' }} />
             </div>

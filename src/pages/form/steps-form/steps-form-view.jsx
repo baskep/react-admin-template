@@ -47,7 +47,7 @@ const FormStep1 = (props) => {
         >
           <Input
             addonBefore={
-              <Select style={{ width: '8rem' }} defaultValue="weixin">
+              <Select style={{ width: '80px' }} defaultValue="weixin">
                 <Option value="weixin">微信</Option>
                 <Option value="twitter">twitter</Option>
                 <Option value="facebook">facebook</Option>
@@ -134,7 +134,7 @@ const FormStepView = () => {
           <div className="base-style">
             <Divider orientation="center">分步表单</Divider>
             <div>
-              <Steps style={{ margin: '3rem auto', maxWidth: '65rem' }} current={current}>
+              <Steps style={{ margin: '30px auto', maxWidth: '650px' }} current={current}>
                 <Step title="填写信息"></Step>
                 <Step title="确认信息"></Step>
                 <Step title="完成"></Step>

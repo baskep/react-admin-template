@@ -48,7 +48,6 @@ const StepView = () => {
               />
               <Step title="Waiting" description="This is a description." />
             </Steps>
-            ,
           </div>
         </Col>
       </Row>

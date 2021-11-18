@@ -12,7 +12,7 @@ const CustomAside = (props) => {
     <Sider className="aside" collapsed={menuToggle}>
       <div className="logo">
         <a rel="noopener noreferrer" href="https://github.com/xtid" target="_blank">
-          <GithubOutlined style={{ fontSize: '3.8rem', color: '#fff' }} />
+          <GithubOutlined style={{ fontSize: '38px', color: '#fff' }} />
         </a>
       </div>
       <CustomMenu menu={menu}></CustomMenu>
