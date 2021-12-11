@@ -48,14 +48,14 @@ const CustomHeader = (props) => {
       </div>
       <div className="right">
         <div className="mr15">
-          <a rel="noopener noreferrer" href="https://github.com/xitd" target="_blank">
+          <a rel="noopener noreferrer" href="https://github.com/sentianc" target="_blank">
             <GithubOutlined style={{ color: '#000' }} />
           </a>
         </div>
         <div className="mr15">
           <Badge dot={true} offset={[-2, 0]}>
             <a
-              href="https://github.com/xitd/react-admin-template"
+              href="https://github.com/sentianc/react-admin-template"
               target="_blank"
               style={{ color: '#000' }}
               rel="noreferrer"
