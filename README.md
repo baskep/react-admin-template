@@ -7,7 +7,7 @@
 ### 使用方法
 
 ```npm
-git clone https://github.com/sentianc/react-admin-template.git
+git clone https://github.com/baskep/react-admin-template.git
 
 cd react-admin-template
 
