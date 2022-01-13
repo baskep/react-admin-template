@@ -23,6 +23,7 @@ const Index = () => {
       screenfull.request(document.getElementById('bar'))
     }
   }
+
   return (
     <Layout className="index animated fadeIn">
       <Row gutter={24} className="index-header">

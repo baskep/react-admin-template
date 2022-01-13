@@ -43,6 +43,11 @@ const EditorView = loadable(() => import(/* webpackChunkName: 'editor' */ '../pa
 // 关于
 const About = loadable(() => import(/* webpackChunkName: 'about' */ '../pages/about'))
 
+// 设置
+const UserSetting = loadable(() =>
+  import(/* webpackChunkName: 'userSetting' */ '../pages/setting/user')
+)
+
 const routes = [
   { path: '/index', exact: true, name: 'Index', component: Index, auth: [1] },
   { path: '/common/button', exact: false, name: '按钮', component: ButtonView, auth: [1] },
@@ -61,6 +66,7 @@ const routes = [
   { path: '/others/upload', exact: false, name: '上传', component: UploadView, auth: [1] },
   { path: '/others/editor', exact: false, name: '富文本', component: EditorView, auth: [1] },
   { path: '/about', exact: false, name: '关于', component: About, auth: [1] },
+  { path: '/user/setting', exact: false, name: '个人设置', component: UserSetting },
 ]
 
 export default routes

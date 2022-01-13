@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useReducer, useMemo } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom'
 import { Layout, BackTop, message } from 'antd'
 import * as echarts from 'echarts/lib/echarts'
 import avatar from '@/assets/images/avatar.jpg'
 import routes from '@/routes'
+import { getUserToken, getUserInfo, removeUserToken, removeUserInfo } from '@/utils/auth'
 import menus from './menu'
 
 import './index.less'
@@ -23,23 +24,23 @@ const reducer = (state, action) => {
   }
 }
 
-const getMenu = (menu) => {
-  let newMenu = []
-  const auth = JSON.parse(localStorage.getItem('user')).auth
-  if (!auth) {
-    return menu
-  } else {
-    newMenu = menu.filter((res) => res.auth && res.auth.indexOf(auth) !== -1)
-    return newMenu
-  }
-}
-
 const CustomLayout = () => {
   const history = useHistory()
   const location = useLocation()
+  const userInfo = getUserInfo()
+  const auth = (userInfo && userInfo.auth) || 0
+  const getMenu = (menu) => {
+    let newMenu = []
+    if (auth === 1) {
+      return menu
+    } else {
+      newMenu = menu.filter((res) => !res.auth || res.auth.indexOf(auth) !== -1)
+      return newMenu
+    }
+  }
 
   const [menu] = useState(() => {
-    if (!localStorage.getItem('user')) {
+    if (!getUserToken()) {
       history.push('/login')
       return []
     } else {
@@ -49,30 +50,25 @@ const CustomLayout = () => {
 
   const [state, dispatch] = useReducer(reducer, { menuToggle: false })
 
-  const auth = useMemo(() => {
-    const res = JSON.parse(localStorage.getItem('user'))
-    return res ? res.auth : ''
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [localStorage])
-
   const handleMenuClick = () => {
     dispatch({ type: 'menuToggle' })
   }
 
-  const handleLoginOut = () => {
-    localStorage.clear()
+  const handleSettingClick = (key) => {
+    if (key === 'user') {
+      history.push('/user/setting')
+    }
+  }
+
+  const handleLoginOutClick = () => {
+    removeUserToken()
+    removeUserInfo()
     history.push('/login')
-    message.success('登出成功!')
+    message.success('登出成功')
   }
 
   const renderItem = (item, props) => {
-    return !auth ? (
-      <item.component {...props} />
-    ) : item.auth && item.auth.indexOf(auth) !== -1 ? (
-      <item.component {...props} />
-    ) : (
-      <Redirect to="/404" {...props} />
-    )
+    return auth || auth === 0 ? <item.component {...props} /> : <Redirect to="/404" {...props} />
   }
 
   useEffect(() => {
@@ -106,8 +102,9 @@ const CustomLayout = () => {
         <CustomHeader
           menuToggle={state.menuToggle}
           onMenuClick={handleMenuClick}
+          onLoginOutClick={handleLoginOutClick}
+          onSettingClick={handleSettingClick}
           avatar={avatar}
-          onLoginOut={handleLoginOut}
         />
         <Content className="content">
           <Switch>

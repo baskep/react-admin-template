@@ -14,22 +14,26 @@ import {
 const { Header } = Layout
 
 const CustomHeader = (props) => {
-  const { avatar, menuToggle, onMenuClick, onLoginOut } = props
+  const { avatar, menuToggle, onMenuClick, onLoginOutClick, onSettingClick } = props
   const menu = (
     <Menu>
-      <Menu.ItemGroup title="用户设置">
+      <Menu.ItemGroup title="设置">
         <Menu.Divider />
         <Menu.Item key="personel-setting">
-          <EditOutlined />
-          &nbsp; 个人设置
+          <span onClick={() => onSettingClick('user')}>
+            <EditOutlined />
+            &nbsp; 账号设置
+          </span>
         </Menu.Item>
         <Menu.Item key="system-setting">
-          <SettingOutlined />
-          &nbsp; 系统设置
+          <span onClick={() => onSettingClick('system')}>
+            <SettingOutlined />
+            &nbsp; 系统设置
+          </span>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="login-out">
-          <span onClick={onLoginOut}>
+          <span onClick={onLoginOutClick}>
             <LoginOutlined />
             &nbsp; 退出登录
           </span>
@@ -86,7 +90,8 @@ CustomHeader.propTypes = {
   avatar: PropTypes.string,
   menuToggle: PropTypes.bool,
   onMenuClick: PropTypes.func,
-  onLoginOut: PropTypes.func,
+  onLoginOutClick: PropTypes.func,
+  onSettingClick: PropTypes.func,
 }
 
 export default CustomHeader
