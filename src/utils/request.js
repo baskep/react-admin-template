@@ -2,11 +2,9 @@ import axios from 'axios'
 import { getUserToken, removeUserToken, removeUserInfo } from '@/utils/auth'
 import { message } from 'antd'
 
-// const a = process.env.REACT_APP_BASE_API
-
 //创建一个axios示例
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api/',
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api/' : '',
   timeout: 5000,
 })
 

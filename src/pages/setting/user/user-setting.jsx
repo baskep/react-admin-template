@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { Layout, Divider, Steps, Button, Form, Input, Result } from 'antd'
+import React, { useState, useRef } from 'react'
+import { Layout, Divider, Steps, Button, Form, Input, Result, Message } from 'antd'
+import cryptojs from 'crypto-js'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 
-import { getUserInfo } from '@/utils/auth'
+import { getUserInfo, setUserInfo } from '@/utils/auth'
+import { modifyUserInfo } from '@/utils/api'
 
 import './index.less'
 
@@ -21,6 +23,8 @@ const formItemLayout = {
 const UserInfoSetForm = (props) => {
   const { onSetCurrent, onSetFormData, userInfo } = props
 
+  const formRef = useRef()
+
   const hanldeSubmitUserInfo = (values) => {
     onSetCurrent(1)
     onSetFormData(values)
@@ -28,7 +32,7 @@ const UserInfoSetForm = (props) => {
 
   return (
     <div>
-      <Form {...formItemLayout} onFinish={hanldeSubmitUserInfo}>
+      <Form {...formItemLayout} onFinish={hanldeSubmitUserInfo} ref={formRef}>
         <Form.Item name="username" label="用户名">
           <span>{userInfo.username}</span>
         </Form.Item>
@@ -48,8 +52,48 @@ const UserInfoSetForm = (props) => {
           ]}
           initialValue={userInfo.mobile}
         >
-          <Input placeholder="请输入手机号码" />
+          <Input placeholder="请输入手机号码" maxLength={11} />
         </Form.Item>
+        <Form.Item
+          name="password"
+          label="密码"
+          rules={[
+            {
+              validator: (_, value) => {
+                const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+                if (value) {
+                  if (value.length < 8 || value.length > 30) {
+                    return Promise.reject('密码长度8-30位')
+                  }
+                  if (!passwordReg.test(value)) {
+                    return Promise.reject('密码必须同时包含大写字母、小写字母和数字')
+                  }
+                }
+                return Promise.resolve()
+              },
+            },
+          ]}
+        >
+          <Input.Password placeholder="请再次输入密码" />
+        </Form.Item>
+        <Form.Item
+          name="confirmPassword"
+          label="确认密码"
+          rules={[
+            {
+              validator: (_, value) => {
+                const { password } = formRef.current.getFieldsValue()
+                if (password && password !== value) {
+                  return Promise.reject('两次输入的密码不一致')
+                }
+                return Promise.resolve()
+              },
+            },
+          ]}
+        >
+          <Input.Password placeholder="请输入需要修改的密码，非必填项" />
+        </Form.Item>
+
         <Divider />
         <Form.Item className="form-steps-button">
           <Button type="primary" htmlType="submit">
@@ -63,14 +107,30 @@ const UserInfoSetForm = (props) => {
 
 const UserInfoConfirmForm = (props) => {
   const { onSetCurrent, formData, userInfo } = props
-  const [iconLoading, setIconLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const hanldeConfirmUserInfo = () => {
-    setIconLoading(true)
-    setTimeout(() => {
-      setIconLoading(false)
-      onSetCurrent(2)
-    }, 2000)
+  const hanldeConfirmUserInfo = async () => {
+    const { username } = userInfo
+    const { mobile, password } = formData
+    const encodePwd = cryptojs.MD5(password).toString()
+
+    const param = {
+      username,
+      mobile,
+      password: encodePwd,
+    }
+
+    setLoading(true)
+    const res = await modifyUserInfo(param)
+    const { status, msg } = res
+    if (status !== 200) {
+      Message.error(msg)
+    } else {
+      const userInfo = Object.assign({}, { ...getUserInfo() }, { mobile: param.mobile })
+      setUserInfo(userInfo)
+    }
+    setLoading(false)
+    onSetCurrent(2)
   }
 
   return (
@@ -84,7 +144,7 @@ const UserInfoConfirmForm = (props) => {
           <Button
             className="form-steps2-button"
             type="primary"
-            loading={iconLoading}
+            loading={loading}
             onClick={hanldeConfirmUserInfo}
           >
             确定
@@ -103,7 +163,7 @@ const UserInfoSubmitForm = (props) => {
       title="提交成功!"
       extra={[
         <Button type="primary" key="console" onClick={() => onSetCurrent(0)}>
-          再次填写
+          重新修改
         </Button>,
       ]}
     />
