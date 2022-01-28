@@ -33,9 +33,7 @@ const MenuView = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <div>
-        <CustomBreadcrumb arr={['导航', '下拉菜单']}></CustomBreadcrumb>
-      </div>
+      <CustomBreadcrumb arr={['导航', '下拉菜单']}></CustomBreadcrumb>
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

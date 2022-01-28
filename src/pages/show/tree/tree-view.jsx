@@ -254,9 +254,7 @@ const TreeView = () => {
     })
   return (
     <Layout className="animated fadeIn">
-      <div>
-        <CustomBreadcrumb arr={['展示', '树形控件']}></CustomBreadcrumb>
-      </div>
+      <CustomBreadcrumb arr={['展示', '树形控件']}></CustomBreadcrumb>
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

@@ -7,9 +7,7 @@ import './index.less'
 
 const AboutView = () => (
   <Layout>
-    <div>
-      <CustomBreadcrumb arr={['关于']}></CustomBreadcrumb>
-    </div>
+    <CustomBreadcrumb arr={['关于']}></CustomBreadcrumb>
     <div className="base-style">
       <h3>关于作者</h3>
       <Divider />

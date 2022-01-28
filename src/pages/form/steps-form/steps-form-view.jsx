@@ -32,38 +32,36 @@ const FormStep1 = (props) => {
   }
 
   return (
-    <div>
-      <Form {...formItemLayout} onFinish={hanldeSubmitFormStep1}>
-        <Form.Item
-          name="username"
-          label="用户名"
-          rules={[{ required: true, message: '请输入用户名!' }]}
-        >
-          <Input placeholder="请输入用户名" />
-        </Form.Item>
-        <Form.Item
-          name="method"
-          label="联系方式"
-          rules={[{ required: true, message: '请输入联系方式!' }]}
-        >
-          <Input
-            addonBefore={
-              <Select style={{ width: '80px' }} defaultValue="weixin">
-                <Option value="weixin">微信</Option>
-                <Option value="twitter">twitter</Option>
-                <Option value="facebook">facebook</Option>
-              </Select>
-            }
-            placeholder="请输入联系方式"
-          />
-        </Form.Item>
-        <Form.Item className="form-steps-button">
-          <Button type="primary" htmlType="submit">
-            下一步
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+    <Form {...formItemLayout} onFinish={hanldeSubmitFormStep1}>
+      <Form.Item
+        name="username"
+        label="用户名"
+        rules={[{ required: true, message: '请输入用户名!' }]}
+      >
+        <Input placeholder="请输入用户名" />
+      </Form.Item>
+      <Form.Item
+        name="method"
+        label="联系方式"
+        rules={[{ required: true, message: '请输入联系方式!' }]}
+      >
+        <Input
+          addonBefore={
+            <Select style={{ width: '80px' }} defaultValue="weixin">
+              <Option value="weixin">微信</Option>
+              <Option value="twitter">twitter</Option>
+              <Option value="facebook">facebook</Option>
+            </Select>
+          }
+          placeholder="请输入联系方式"
+        />
+      </Form.Item>
+      <Form.Item className="form-steps-button">
+        <Button type="primary" htmlType="submit">
+          下一步
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }
 
@@ -80,24 +78,22 @@ const FormStep2 = (props) => {
   }
 
   return (
-    <div>
-      <Form hideRequiredMark {...formItemLayout}>
-        <Form.Item label="用户名">{formData && formData.username}</Form.Item>
-        <Form.Item label="联系方式">{formData && formData.method}</Form.Item>
-        <Divider />
-        <Form.Item {...tailFormItemLayout}>
-          <Button onClick={() => onSetCurrent(0)}>上一步</Button>
-          <Button
-            className="form-steps2-button"
-            type="primary"
-            loading={iconLoading}
-            onClick={hanldeClickFormStep1}
-          >
-            确定
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+    <Form hideRequiredMark {...formItemLayout}>
+      <Form.Item label="用户名">{formData && formData.username}</Form.Item>
+      <Form.Item label="联系方式">{formData && formData.method}</Form.Item>
+      <Divider />
+      <Form.Item {...tailFormItemLayout}>
+        <Button onClick={() => onSetCurrent(0)}>上一步</Button>
+        <Button
+          className="form-steps2-button"
+          type="primary"
+          loading={iconLoading}
+          onClick={hanldeClickFormStep1}
+        >
+          确定
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }
 

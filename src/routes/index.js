@@ -3,6 +3,11 @@ import loadable from '../utils/loadable'
 // 首页
 const Index = loadable(() => import(/* webpackChunkName: 'index' */ '../pages/index'))
 
+// 用户管理
+const UserList = loadable(() =>
+  import(/* webpackChunkName: 'userList' */ '../pages/user/user-list')
+)
+
 // 通用
 const ButtonView = loadable(() => import(/* webpackChunkName: 'button' */ '../pages/common/button'))
 const IconView = loadable(() => import(/* webpackChunkName: 'icon' */ '../pages/common/icon'))
@@ -50,6 +55,7 @@ const UserSetting = loadable(() =>
 
 const routes = [
   { path: '/index', exact: true, name: 'Index', component: Index, auth: [1] },
+  { path: '/user/list', exact: false, name: '用户管理', component: UserList, auth: [1] },
   { path: '/common/button', exact: false, name: '按钮', component: ButtonView, auth: [1] },
   { path: '/common/icon', exact: false, name: '图标', component: IconView, auth: [1] },
   { path: '/nav/dropdown', exact: false, name: '下拉菜单', component: DropdownView },

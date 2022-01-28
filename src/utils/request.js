@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getUserToken, removeUserToken, removeUserInfo } from '@/utils/auth'
-import { message } from 'antd'
+import { Message } from 'antd'
 
 //创建一个axios示例
 const service = axios.create({
@@ -27,7 +27,7 @@ service.interceptors.response.use(
     const res = response.data
     if (!res || res.status === 403) {
       const { href } = window.location
-      message.error('登录过期，请重新登录')
+      Message.error('登录过期，请重新登录')
       removeUserToken()
       removeUserInfo()
       setTimeout(() => {

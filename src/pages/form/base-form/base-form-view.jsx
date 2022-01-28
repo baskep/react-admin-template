@@ -46,9 +46,7 @@ const FromView = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <div>
-        <CustomBreadcrumb arr={['表单', '基础表单']}></CustomBreadcrumb>
-      </div>
+      <CustomBreadcrumb arr={['表单', '基础表单']}></CustomBreadcrumb>
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider></Divider>

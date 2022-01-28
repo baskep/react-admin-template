@@ -134,9 +134,7 @@ const UploadView = () => {
   )
   return (
     <Layout>
-      <div>
-        <CustomBreadcrumb arr={['其它', '上传']}></CustomBreadcrumb>
-      </div>
+      <CustomBreadcrumb arr={['其它', '上传']}></CustomBreadcrumb>
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

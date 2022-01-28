@@ -18,10 +18,32 @@
   background-color: #ccc;
 }
 
-.base-style {
+.base-style, .search-form-wrap {
   background-color: #fff;
   margin-bottom: 10px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 13px 0 rgba(228, 228, 228, 0.6);
+}
+
+.search-form-wrap {
+  padding: 15px 15px 0;
+  .ant-form-item {
+    line-height: 1;
+    margin-bottom: 15px;
+  }
+}
+
+.ant-table-thead, .ant-table-tbody {
+  .ant-table-cell {
+    text-align: center;
+  }
+}
+
+.search-operation-area {
+  margin-bottom: 15px;
+}
+
+.search-operation-button {
+  margin-left: 15px;
 }
