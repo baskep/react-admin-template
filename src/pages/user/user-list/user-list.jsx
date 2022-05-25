@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Layout, Message } from 'antd'
 import { cloneDeep } from 'lodash'
 
@@ -18,6 +18,7 @@ const defaultSearchParam = {
 }
 
 const UserList = () => {
+  const [selectedValues, setSelectedValues] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
   const [current, setCurrent] = useState(1)
   const [searchParam, setSearchParam] = useState(defaultSearchParam)
@@ -32,6 +33,10 @@ const UserList = () => {
     setSelectedRowKeys([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParam])
+
+  const userInfo = useMemo(() => {
+    return selectedValues.length ? selectedValues[0] : {}
+  }, [selectedValues])
 
   const handleUserSearch = (value) => {
     const param = {}
@@ -54,12 +59,16 @@ const UserList = () => {
   const handleModifyUserInfo = () => {
     if (!selectedRowKeys.length) {
       Message.warning('请选中所需要修改的信息')
+    } else if (selectedRowKeys.length !== 1) {
+      Message.warning('每次只能修改一条信息')
+    } else {
+      handleToggelModal(true)
     }
-    // to do 修改用户信息
   }
 
-  const handleSetSelectedRowKeys = (selectedRowKeys) => {
+  const handleSetSelectedRowKeys = (selectedRowKeys, selectedArr) => {
     setSelectedRowKeys(selectedRowKeys)
+    setSelectedValues(selectedArr)
   }
 
   const handlePageChange = (value) => {
@@ -71,6 +80,11 @@ const UserList = () => {
     setCurrent(current)
   }
 
+  const handleReload = () => {
+    const curSearchParam = cloneDeep(searchParam)
+    setSearchParam(curSearchParam)
+  }
+
   const handleSetUserStatus = async (status) => {
     if (!selectedRowKeys.length) {
       Message.warning(`请选中所需要${status ? '禁用' : '启用'}的用户`)
@@ -78,12 +92,16 @@ const UserList = () => {
       const result = await setUserStatus({ selectedRowKeys, status })
       if (result.status === 200) {
         Message.success('操作成功')
-        const curSearchParam = cloneDeep(searchParam)
-        setSearchParam(curSearchParam)
+        handleReload()
       } else {
         Message.error('操作失败，请稍后再试')
       }
     }
+  }
+
+  // todo 更改用户信息
+  const handleSubmitUserInfo = (value) => {
+    console.log(value)
   }
 
   return (
@@ -101,7 +119,12 @@ const UserList = () => {
         onSetSelectedRowKeys={handleSetSelectedRowKeys}
         onPageChange={handlePageChange}
       ></UserTableList>
-      <UserInfoModal isModalShow={isModalShow} onToggelModal={handleToggelModal}></UserInfoModal>
+      <UserInfoModal
+        userInfo={userInfo}
+        isModalShow={isModalShow}
+        onToggelModal={handleToggelModal}
+        onSubmitUserInfo={handleSubmitUserInfo}
+      ></UserInfoModal>
     </Layout>
   )
 }

@@ -56,7 +56,7 @@ const UserInfoSetForm = (props) => {
         </Form.Item>
         <Form.Item
           name="password"
-          label="密码"
+          label="新密码"
           rules={[
             {
               validator: (_, value) => {
