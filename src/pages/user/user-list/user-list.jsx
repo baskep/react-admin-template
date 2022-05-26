@@ -24,7 +24,7 @@ const UserList = () => {
   const [current, setCurrent] = useState(1)
   const [searchParam, setSearchParam] = useState(defaultSearchParam)
   const [isAddModalShow, setIsAddModalShow] = useState(false)
-  const [isEditModalShow, setIsModifyModalShow] = useState(false)
+  const [isEditModalShow, setIsEditModalShow] = useState(false)
   const [userList, fetchUserList] = useFetch(getUserList, {})
 
   useEffect(() => {
@@ -53,12 +53,9 @@ const UserList = () => {
     setCurrent(1)
   }
 
-  const handleToggelAddModal = (status) => {
-    setIsAddModalShow(status)
-  }
-
-  const handleToggelEditModal = (status) => {
-    setIsModifyModalShow(status)
+  const handleReload = () => {
+    const curSearchParam = cloneDeep(searchParam)
+    setSearchParam(curSearchParam)
   }
 
   const handleModifyUserInfo = () => {
@@ -67,8 +64,18 @@ const UserList = () => {
     } else if (selectedRowKeys.length !== 1) {
       Message.warning('每次只能修改一条信息')
     } else {
-      handleToggelEditModal(true)
+      setIsEditModalShow(true)
     }
+  }
+
+  const handleCloseAddModal = () => {
+    setIsAddModalShow(false)
+    handleReload()
+  }
+
+  const handleCloseEditModal = () => {
+    setIsEditModalShow(false)
+    handleReload()
   }
 
   const handleSetSelectedRowKeys = (selectedRowKeys, selectedArr) => {
@@ -85,11 +92,6 @@ const UserList = () => {
     setCurrent(current)
   }
 
-  const handleReload = () => {
-    const curSearchParam = cloneDeep(searchParam)
-    setSearchParam(curSearchParam)
-  }
-
   const handleSetUserStatus = async (status) => {
     if (!selectedRowKeys.length) {
       Message.warning(`请选中所需要${status ? '禁用' : '启用'}的用户`)
@@ -104,11 +106,6 @@ const UserList = () => {
     }
   }
 
-  const handleCloseEditModal = () => {
-    setIsModifyModalShow(false)
-    handleReload()
-  }
-
   return (
     <Layout>
       <CustomBreadcrumb arr={['用户管理', '用户列表']} />
@@ -116,7 +113,7 @@ const UserList = () => {
         onUserSearch={handleUserSearch}
         onModifyUserInfo={handleModifyUserInfo}
         onSetUserStatus={handleSetUserStatus}
-        onAddUserInfo={() => handleToggelAddModal(true)}
+        onAddUserInfo={() => setIsAddModalShow(true)}
       />
       <UserTableList
         selectedRowKeys={selectedRowKeys}
@@ -125,16 +122,16 @@ const UserList = () => {
         onSetSelectedRowKeys={handleSetSelectedRowKeys}
         onPageChange={handlePageChange}
       />
-      <UserInfoAddModal
-        isAddModalShow={isAddModalShow}
-        onToggelEditModal={handleToggelEditModal}
-        onCloseEditModal={handleCloseEditModal}
-      />
+      {isAddModalShow && (
+        <UserInfoAddModal
+          isAddModalShow={isAddModalShow}
+          onCloseAddModal={handleCloseAddModal}
+        />
+      )}
       {isEditModalShow && (
         <UserInfoEditModal
           userInfo={userInfo}
           isEditModalShow={isEditModalShow}
-          onToggelEditModal={handleToggelEditModal}
           onCloseEditModal={handleCloseEditModal}
         />
       )}

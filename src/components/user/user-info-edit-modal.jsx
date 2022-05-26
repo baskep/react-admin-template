@@ -15,16 +15,12 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { userInfo, isEditModalShow, onToggelEditModal, onCloseEditModal } = props
+  const { userInfo, isEditModalShow, onCloseEditModal } = props
 
   const [loading, setLoading] = useState(false)
 
   const formRef = useRef()
   const isNameChange = useRef(false)
-
-  const handleToggelModal = (status) => {
-    onToggelEditModal(status)
-  }
 
   const hanldeSubmitUserInfo = () => {
     formRef.current.validateFields()
@@ -57,7 +53,7 @@ const UserInfoModal = (props) => {
         Message.success('修改账号信息成功')
         const curUserInfo = Object.assign({}, { ...userInfo }, { username, mobile })
         setUserInfo(curUserInfo)
-        onCloseEditModal && onCloseEditModal()
+        onCloseEditModal()
       })
       .catch(() => {})
   }
@@ -72,7 +68,7 @@ const UserInfoModal = (props) => {
       title="修改账号信息"
       visible={isEditModalShow}
       footer={[
-        <Button key="cancel" onClick={() => handleToggelModal(false)}>
+        <Button key="cancel" onClick={onCloseEditModal}>
           取消
         </Button>,
         <Button key="confirm" type="primary" onClick={() => hanldeSubmitUserInfo()}>

@@ -14,15 +14,11 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { isAddModalShow, onToggelEditModal, onCloseEditModal } = props
+  const { isAddModalShow, onCloseAddModal } = props
 
   const [loading, setLoading] = useState(false)
 
   const formRef = useRef()
-
-  const handleToggelModal = (status) => {
-    onToggelEditModal(status)
-  }
 
   const hanldeSubmitUserInfo = async() => {
     formRef.current.validateFields()
@@ -46,7 +42,7 @@ const UserInfoModal = (props) => {
           return
         }
         Message.success('新增账号成功')
-        onCloseEditModal && onCloseEditModal()
+        onCloseAddModal()
       })
       .catch(() => {})
   }
@@ -56,14 +52,14 @@ const UserInfoModal = (props) => {
       title="修改账号信息"
       visible={isAddModalShow}
       footer={[
-        <Button key="cancel" onClick={() => handleToggelModal(false)}>
+        <Button key="cancel" onClick={onCloseAddModal}>
           取消
         </Button>,
         <Button key="confirm" type="primary" onClick={() => hanldeSubmitUserInfo()}>
           确定
         </Button>,
       ]}
-      onCancel={onCloseEditModal}
+      onCancel={onCloseAddModal}
     >
       <Spin spinning={loading}>
         <Form {...formItemLayout} ref={formRef}>
