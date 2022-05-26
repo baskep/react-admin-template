@@ -46,10 +46,10 @@ const FromView = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['表单', '基础表单']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['表单', '基础表单']} />
       <div className="base-style">
         <h3>何时使用</h3>
-        <Divider></Divider>
+        <Divider />
         <p>用于创建一个实体或收集信息。</p>
         <p>需要对输入的数据类型进行校验时。</p>
       </div>

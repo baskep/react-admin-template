@@ -19,7 +19,7 @@ const CustomAside = (props) => {
           <img src={logo} alt="logo" />
         </a>
       </div>
-      <CustomMenu menu={menu}></CustomMenu>
+      <CustomMenu menu={menu} />
     </Sider>
   )
 }

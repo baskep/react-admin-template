@@ -16,9 +16,10 @@ service.interceptors.request.use(
     return config
   },
   (error) => {
+    // eslint-disable-next-line no-console
     console.log(error)
     Promise.reject(error)
-  }
+  },
 )
 
 // 响应拦截器
@@ -38,7 +39,7 @@ service.interceptors.response.use(
   },
   (error) => {
     return Promise.reject(error)
-  }
+  },
 )
 
 export default service

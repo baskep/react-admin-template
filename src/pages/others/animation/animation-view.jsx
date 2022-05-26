@@ -59,7 +59,7 @@ const AnimationView = () => {
   const [fontType, setFontType] = useState('animated bounceInRight')
   return (
     <Layout className="animated fadeIn animation-main">
-      <CustomBreadcrumb arr={['其他', '动画']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['其他', '动画']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

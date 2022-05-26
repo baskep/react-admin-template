@@ -46,7 +46,7 @@ const Pie = () => {
     })
   }, [])
 
-  return <div id="pie" style={{ height: 300 }}></div>
+  return <div id="pie" style={{ height: 300 }} />
 }
 
 export default Pie

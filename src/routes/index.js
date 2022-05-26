@@ -5,43 +5,32 @@ const Index = loadable(() => import(/* webpackChunkName: 'index' */ '../pages/in
 
 // 用户管理
 const UserList = loadable(() =>
-  import(/* webpackChunkName: 'userList' */ '../pages/user/user-list')
-)
+  import(/* webpackChunkName: 'userList' */ '../pages/user/user-list'))
 
 // 通用
 const ButtonView = loadable(() => import(/* webpackChunkName: 'button' */ '../pages/common/button'))
 const IconView = loadable(() => import(/* webpackChunkName: 'icon' */ '../pages/common/icon'))
 
 // 导航
-const DropdownView = loadable(() =>
-  import(/* webpackChunkName: 'dropdown' */ '../pages/navigation/dropdown')
-)
+const DropdownView = loadable(() => import(/* webpackChunkName: 'dropdown' */ '../pages/navigation/dropdown'))
 const MenuView = loadable(() => import(/* webpackChunkName: 'menu' */ '../pages/navigation/menu'))
 const StepsView = loadable(() => import(/* webpackChunkName: 'step' */ '../pages/navigation/steps'))
 
 // 表单
-const BaseFormView = loadable(() =>
-  import(/* webpackChunkName: 'formBase' */ '../pages/form/base-form')
-)
-const StepsFormView = loadable(() =>
-  import(/* webpackChunkName: 'formBase' */ '../pages/form/steps-form')
-)
+const BaseFormView = loadable(() => import(/* webpackChunkName: 'formBase' */ '../pages/form/base-form'))
+const StepsFormView = loadable(() => import(/* webpackChunkName: 'formBase' */ '../pages/form/steps-form'))
 
 // 展示
-const CollapseView = loadable(() =>
-  import(/* webpackChunkName: 'collapse' */ '../pages/show/collapse')
-)
+const CollapseView = loadable(() => import(/* webpackChunkName: 'collapse' */ '../pages/show/collapse'))
 const TableView = loadable(() => import(/* webpackChunkName: 'table' */ '../pages/show/table'))
 const TreeView = loadable(() => import(/* webpackChunkName: 'tree' */ '../pages/show/tree'))
 const TabView = loadable(() => import(/* webpackChunkName: 'tab' */ '../pages/show/tab'))
 
 // 其它
 const ProgressView = loadable(() =>
-  import(/* webpackChunkName: 'progress' */ '../pages/others/progress')
-)
+  import(/* webpackChunkName: 'progress' */ '../pages/others/progress'))
 const AnimationView = loadable(() =>
-  import(/* webpackChunkName: 'animation' */ '../pages/others/animation')
-)
+  import(/* webpackChunkName: 'animation' */ '../pages/others/animation'))
 const UploadView = loadable(() => import(/* webpackChunkName: 'upload' */ '../pages/others/upload'))
 const EditorView = loadable(() => import(/* webpackChunkName: 'editor' */ '../pages/others/editor'))
 
@@ -49,9 +38,7 @@ const EditorView = loadable(() => import(/* webpackChunkName: 'editor' */ '../pa
 const About = loadable(() => import(/* webpackChunkName: 'about' */ '../pages/about'))
 
 // 设置
-const UserSetting = loadable(() =>
-  import(/* webpackChunkName: 'userSetting' */ '../pages/setting/user')
-)
+const UserSetting = loadable(() => import(/* webpackChunkName: 'userSetting' */ '../pages/setting/user'))
 
 const routes = [
   { path: '/index', exact: true, name: 'Index', component: Index, auth: [1] },

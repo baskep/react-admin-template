@@ -13,7 +13,7 @@ import './index.less'
 const Login = () => {
   const history = useHistory()
 
-  const [loginData, fetchLogin] = useFetch(login, { data: {} })
+  const [loginData, fetchLogin] = useFetch(login, { data: {}})
 
   const handleSubmit = async (values) => {
     const { username, password } = values

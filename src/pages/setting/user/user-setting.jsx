@@ -33,16 +33,22 @@ const UserInfoSetForm = (props) => {
   return (
     <div>
       <Form {...formItemLayout} onFinish={hanldeSubmitUserInfo} ref={formRef}>
-        <Form.Item name="username" label="用户名">
-          <span>{userInfo.username}</span>
+        <Form.Item
+          name="username"
+          label="用户名"
+          initialValue={userInfo.username}
+          rules={[{ required: true, message: '请输入用户名!' }]}
+        >
+          <Input placeholder="请输入用户名" maxLength={11} />
         </Form.Item>
+
         <Form.Item
           name="mobile"
           label="手机号码"
           rules={[
             { required: true, message: '请输入手机号码!' },
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const reg = /^1\d{10}$/
                 return !value || reg.test(value)
                   ? Promise.resolve()
@@ -59,7 +65,7 @@ const UserInfoSetForm = (props) => {
           label="新密码"
           rules={[
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
                 if (value) {
                   if (value.length < 8 || value.length > 30) {
@@ -81,7 +87,7 @@ const UserInfoSetForm = (props) => {
           label="确认密码"
           rules={[
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const { password } = formRef.current.getFieldsValue()
                 if (password && password !== value) {
                   return Promise.reject('两次输入的密码不一致')
@@ -136,7 +142,7 @@ const UserInfoConfirmForm = (props) => {
   return (
     <div>
       <Form hideRequiredMark {...formItemLayout}>
-        <Form.Item label="用户名">{userInfo.username}</Form.Item>
+        <Form.Item label="用户名">{formData && formData.username}</Form.Item>
         <Form.Item label="联系方式">{formData && formData.mobile}</Form.Item>
         <Divider />
         <Form.Item className="form-steps-button">
@@ -177,15 +183,15 @@ const FormStepView = () => {
   return (
     <Layout className="animated fadeIn">
       <div>
-        <CustomBreadcrumb arr={['设置', '账号设置']}></CustomBreadcrumb>
+        <CustomBreadcrumb arr={['设置', '账号设置']} />
       </div>
       <div className="base-style">
         <Divider orientation="center">账号设置</Divider>
         <div>
           <Steps style={{ margin: '30px auto', maxWidth: '650px' }} current={current}>
-            <Step title="修改信息"></Step>
-            <Step title="确认信息"></Step>
-            <Step title="完成"></Step>
+            <Step title="修改信息" />
+            <Step title="确认信息" />
+            <Step title="完成" />
           </Steps>
           {current === 0 && (
             <UserInfoSetForm

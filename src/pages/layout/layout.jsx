@@ -33,19 +33,19 @@ const CustomLayout = () => {
     let newMenu = []
     if (auth === 1) {
       return menu
-    } else {
-      newMenu = menu.filter((res) => !res.auth || res.auth.indexOf(auth) !== -1)
-      return newMenu
     }
+    newMenu = menu.filter(res => !res.auth || res.auth.indexOf(auth) !== -1)
+    return newMenu
+
   }
 
   const [menu] = useState(() => {
     if (!getUserToken()) {
       history.push('/login')
       return []
-    } else {
-      return getMenu(menus)
     }
+    return getMenu(menus)
+
   })
 
   const [state, dispatch] = useReducer(reducer, { menuToggle: false })
@@ -114,7 +114,7 @@ const CustomLayout = () => {
                   key={item.path}
                   path={item.path}
                   exact={item.exact}
-                  render={(props) => renderItem(item, props)}
+                  render={props => renderItem(item, props)}
                 />
               )
             })}

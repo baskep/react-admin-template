@@ -58,7 +58,7 @@ const TableView = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['展示', '树形控件']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['展示', '树形控件']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

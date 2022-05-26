@@ -100,7 +100,7 @@ const getParentKey = (key, tree) => {
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i]
     if (node.children) {
-      if (node.children.some((item) => item.key === key)) {
+      if (node.children.some(item => item.key === key)) {
         parentKey = node.key
       } else if (getParentKey(key, node.children)) {
         parentKey = getParentKey(key, node.children)
@@ -186,11 +186,11 @@ const TreeView = () => {
     setcheckedKeys(checkedKeys)
   }
 
-  const onSelect = (selectedKeys, info) => {
+  const onSelect = (selectedKeys) => {
     setselectedKeys(selectedKeys)
   }
 
-  const renderTreeNodes = (data) =>
+  const renderTreeNodes = data =>
     data.map((item) => {
       if (item.children) {
         return (
@@ -217,7 +217,7 @@ const TreeView = () => {
     setautoExpandParent(true)
   }
 
-  const loopDrop = (data) =>
+  const loopDrop = data =>
     data.map((item) => {
       if (item.children && item.children.length) {
         return (
@@ -228,7 +228,7 @@ const TreeView = () => {
       }
       return <TreeNode key={item.key} title={item.title} />
     })
-  const loops = (data) =>
+  const loops = data =>
     data.map((item) => {
       const index = item.title.indexOf(searchValue)
       const beforeStr = item.title.substr(0, index)
@@ -254,7 +254,7 @@ const TreeView = () => {
     })
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['展示', '树形控件']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['展示', '树形控件']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />
@@ -323,7 +323,7 @@ const TreeView = () => {
               defaultExpandedKeys={expandedKeys}
               draggable
               blockNode
-              onDragEnter={(info) => setexpandedKeys(info.expandedKeys)}
+              onDragEnter={info => setexpandedKeys(info.expandedKeys)}
               onDrop={onDrop}
             >
               {loopDrop(gData)}

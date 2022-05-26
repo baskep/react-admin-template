@@ -58,7 +58,7 @@ const UserTableList = (props) => {
         rowSelection={rowSelection}
         pagination={{ total: dataSource.total, current }}
         onChange={onPageChange}
-      ></Table>
+      />
     </div>
   )
 }

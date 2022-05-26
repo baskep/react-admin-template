@@ -78,13 +78,13 @@ const Scatter = () => {
           name: '1990',
           data: data[0],
           type: 'scatter',
-          symbolSize: function (data) {
+          symbolSize (data) {
             return Math.sqrt(data[2]) / 5e2
           },
           label: {
             emphasis: {
               show: true,
-              formatter: function (param) {
+              formatter (param) {
                 return param.data[3]
               },
               position: 'top',
@@ -102,13 +102,13 @@ const Scatter = () => {
           name: '2015',
           data: data[1],
           type: 'scatter',
-          symbolSize: function (data) {
+          symbolSize (data) {
             return Math.sqrt(data[2]) / 5e2
           },
           label: {
             emphasis: {
               show: true,
-              formatter: function (param) {
+              formatter (param) {
                 return param.data[3]
               },
               position: 'top',
@@ -129,7 +129,7 @@ const Scatter = () => {
     })
   }, [])
 
-  return <div id="scatter" style={{ height: 300 }}></div>
+  return <div id="scatter" style={{ height: 300 }} />
 }
 
 export default Scatter

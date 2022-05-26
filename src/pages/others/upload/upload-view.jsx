@@ -38,7 +38,7 @@ function getBase_64(file) {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => resolve(reader.result)
-    reader.onerror = (error) => reject(error)
+    reader.onerror = error => reject(error)
   })
 }
 
@@ -104,7 +104,7 @@ const UploadView = () => {
           return imageUrl
         }
       })
-      setLoading(() => (info.file.status === 'uploading' ? true : false))
+      setLoading(() => (info.file.status === 'uploading'))
     })
   }
 
@@ -134,7 +134,7 @@ const UploadView = () => {
   )
   return (
     <Layout>
-      <CustomBreadcrumb arr={['其它', '上传']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['其它', '上传']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

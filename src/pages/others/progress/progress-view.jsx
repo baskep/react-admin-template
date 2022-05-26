@@ -12,10 +12,10 @@ const ProgressView = () => {
 
   return (
     <Layout className="progress animated fadeIn">
-      <CustomBreadcrumb arr={['其他', '进度条']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['其他', '进度条']} />
       <div className="base-style">
         <h3>何时使用</h3>
-        <Divider></Divider>
+        <Divider />
         <p>在操作需要较长时间才能完成时，为用户显示该操作的当前进度和状态。</p>
       </div>
       <Row gutter={8}>
@@ -33,11 +33,11 @@ const ProgressView = () => {
             <Progress type="circle" percent={percent} />
             <ButtonGroup>
               <Button
-                onClick={() => setPercent((percent) => (percent < 0 ? 0 : percent - 10))}
+                onClick={() => setPercent(percent => (percent < 0 ? 0 : percent - 10))}
                 icon="minus"
               />
               <Button
-                onClick={() => setPercent((percent) => (percent > 100 ? 100 : percent + 10))}
+                onClick={() => setPercent(percent => (percent > 100 ? 100 : percent + 10))}
                 icon="plus"
               />
             </ButtonGroup>
@@ -52,7 +52,7 @@ const ProgressView = () => {
           </div>
           <div className="base-style">
             <Divider orientation="left">自定义文字</Divider>
-            <Progress type="circle" percent={75} format={(percent) => `${percent} Days`} />
+            <Progress type="circle" percent={75} format={percent => `${percent} Days`} />
             <Progress type="circle" percent={100} format={() => 'Done'} />
           </div>
         </Col>

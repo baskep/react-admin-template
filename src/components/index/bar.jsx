@@ -126,7 +126,7 @@ const Bar = () => {
       myChart.resize()
     })
   }, [])
-  return <div id="bar" style={{ height: 300, background: '#fff' }}></div>
+  return <div id="bar" style={{ height: 300, background: '#fff' }} />
 }
 
 export default Bar

@@ -36,7 +36,7 @@ const TabsViews = () => {
         lastIndex = i - 1
       }
     })
-    const newPanes = panes.filter((pane) => pane.key !== targetKey)
+    const newPanes = panes.filter(pane => pane.key !== targetKey)
     if (panes.length && activeKey === targetKey) {
       if (lastIndex >= 0) {
         setActiveKye(panes[lastIndex].key)
@@ -54,7 +54,7 @@ const TabsViews = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['展示', '标签页']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['展示', '标签页']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />
@@ -85,7 +85,7 @@ const TabsViews = () => {
             <div>
               <Radio.Group
                 value={size}
-                onChange={(e) => setSize(e.target.value)}
+                onChange={e => setSize(e.target.value)}
                 style={{ marginBottom: 16 }}
               >
                 <Radio.Button value="small">Small</Radio.Button>
@@ -114,7 +114,7 @@ const TabsViews = () => {
                 Tab position：
                 <Select
                   value={tabPosition}
-                  onChange={(tabPosition) => setTabPosition(tabPosition)}
+                  onChange={tabPosition => setTabPosition(tabPosition)}
                   dropdownMatchSelectWidth={false}
                 >
                   <Option value="top">top</Option>
@@ -152,12 +152,12 @@ const TabsViews = () => {
               </div>
               <Tabs
                 hideAdd
-                onChange={(activeKey) => setActiveKye(activeKey)}
+                onChange={activeKey => setActiveKye(activeKey)}
                 activeKey={activeKey}
                 type="editable-card"
                 onEdit={onEdit}
               >
-                {panes.map((pane) => (
+                {panes.map(pane => (
                   <TabPane tab={pane.title} key={pane.key}>
                     {pane.content}
                   </TabPane>

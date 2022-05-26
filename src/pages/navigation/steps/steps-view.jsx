@@ -28,7 +28,7 @@ const StepView = () => {
 
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['导航', '下拉菜单']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['导航', '下拉菜单']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />
@@ -103,8 +103,8 @@ const StepView = () => {
         <Col span={24}>
           <div className="base-style">
             <div>
-              <Steps current={current} onChange={(current) => setCurrent(current)}>
-                {steps.map((item) => (
+              <Steps current={current} onChange={current => setCurrent(current)}>
+                {steps.map(item => (
                   <Step key={item.title} title={item.title} />
                 ))}
               </Steps>

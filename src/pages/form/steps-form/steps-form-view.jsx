@@ -119,7 +119,7 @@ const FormStepView = () => {
   return (
     <Layout className="animated fadeIn">
       <div>
-        <CustomBreadcrumb arr={['表单', '步骤表单']}></CustomBreadcrumb>
+        <CustomBreadcrumb arr={['表单', '步骤表单']} />
       </div>
       <div className="base-style">
         <h3>何时使用</h3>
@@ -132,9 +132,9 @@ const FormStepView = () => {
             <Divider orientation="center">分步表单</Divider>
             <div>
               <Steps style={{ margin: '30px auto', maxWidth: '650px' }} current={current}>
-                <Step title="填写信息"></Step>
-                <Step title="确认信息"></Step>
-                <Step title="完成"></Step>
+                <Step title="填写信息" />
+                <Step title="确认信息" />
+                <Step title="完成" />
               </Steps>
               {current === 0 && <FormStep1 onSetCurrent={setCurrent} onSetFormData={setFormData} />}
               {current === 1 && <FormStep2 onSetCurrent={setCurrent} formData={formData} />}

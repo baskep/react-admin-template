@@ -103,14 +103,14 @@ const PandaSvg = () => (
   </svg>
 )
 
-const HeartIcon = (props) => <Icon component={HeartSvg} {...props} />
+const HeartIcon = props => <Icon component={HeartSvg} {...props} />
 
-const PandaIcon = (props) => <Icon component={PandaSvg} {...props} />
+const PandaIcon = props => <Icon component={PandaSvg} {...props} />
 
 const IconView = () => {
   return (
     <Layout className="icon animated fadeIn">
-      <CustomBreadcrumb arr={['通用', '图标']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['通用', '图标']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

@@ -29,8 +29,8 @@ const PictorialBar = () => {
         axisPointer: {
           type: 'none',
         },
-        formatter: function (params) {
-          return params[0].name + ': ' + params[0].value
+        formatter (params) {
+          return `${params[0].name }: ${ params[0].value}`
         },
       },
       xAxis: {
@@ -125,7 +125,7 @@ const PictorialBar = () => {
     })
   }, [])
 
-  return <div id="pictorialBar" style={{ height: 300 }}></div>
+  return <div id="pictorialBar" style={{ height: 300 }} />
 }
 
 export default PictorialBar

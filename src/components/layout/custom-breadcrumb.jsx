@@ -24,9 +24,8 @@ const CustomBreadcrumb = (props) => {
                 <Link to={res.path}>{res.title}</Link>
               </Breadcrumb.Item>
             )
-          } else {
-            return <Breadcrumb.Item key={res}>{res}</Breadcrumb.Item>
           }
+          return <Breadcrumb.Item key={res}>{res}</Breadcrumb.Item>
         })}
     </Breadcrumb>
   )

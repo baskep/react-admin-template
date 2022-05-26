@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-dom'
 const getOpenKeys = (string) => {
   let newStr = ''
   const newArr = []
-  const arr = string.split('/').map((i) => '/' + i)
+  const arr = string.split('/').map(i => `/${ i}`)
   for (let i = 1; i < arr.length - 1; i++) {
     newStr += arr[i]
     newArr.push(newStr)
@@ -46,9 +46,9 @@ const CustomMenu = (props) => {
       // 这里与定义的路由规则有关
       if (latestOpenKey.includes(openKeys[0])) {
         return { ...prevState, openKeys }
-      } else {
-        return { ...prevState, openKeys: [latestOpenKey] }
       }
+      return { ...prevState, openKeys: [latestOpenKey] }
+
     })
   }
 
@@ -89,7 +89,7 @@ const CustomMenu = (props) => {
       theme="dark"
       openKeys={state.openKeys}
       selectedKeys={state.selectedKeys}
-      onClick={({ key }) => setstate((prevState) => ({ ...prevState, selectedKeys: [key] }))}
+      onClick={({ key }) => setstate(prevState => ({ ...prevState, selectedKeys: [key] }))}
       onOpenChange={onOpenChange}
     >
       {props.menu &&

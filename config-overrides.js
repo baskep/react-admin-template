@@ -1,4 +1,6 @@
-const { override, fixBabelImports, addWebpackAlias, addLessLoader } = require('customize-cra')
+const { override, fixBabelImports, addWebpackAlias } = require('customize-cra')
+const addLessLoader = require('customize-cra-less-loader')
+
 const path = require('path')
 
 module.exports = override(
@@ -9,13 +11,17 @@ module.exports = override(
   }),
 
   addLessLoader({
-    javascriptEnabled: true,
-    modifyVars: {
-      '@primary-color': '#1890ff',
+    lessLoaderOptions: {
+      lessOptions: {
+        javascriptEnabled: true,
+        modifyVars: {
+          '@primary-color': '#1890ff',
+        },
+      },
     },
   }),
 
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src'),
-  })
+  }),
 )

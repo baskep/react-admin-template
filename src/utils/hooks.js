@@ -29,7 +29,7 @@ export function useFetch(service, options = {}) {
         throw new Error(error).toString()
       }
     },
-    [service, data, refresh]
+    [service, data, refresh],
   )
 
   return [{ error, loading, data: resData, query }, fetch]

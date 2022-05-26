@@ -31,7 +31,6 @@ const UserList = () => {
       ...searchParam.searchValue,
     })
     setSelectedRowKeys([])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParam])
 
   const userInfo = useMemo(() => {
@@ -106,25 +105,25 @@ const UserList = () => {
 
   return (
     <Layout>
-      <CustomBreadcrumb arr={['用户管理', '用户列表']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['用户管理', '用户列表']} />
       <UserSearchForm
         onUserSearch={handleUserSearch}
         onModifyUserInfo={handleModifyUserInfo}
         onSetUserStatus={handleSetUserStatus}
-      ></UserSearchForm>
+      />
       <UserTableList
         selectedRowKeys={selectedRowKeys}
         userList={userList}
         current={current}
         onSetSelectedRowKeys={handleSetSelectedRowKeys}
         onPageChange={handlePageChange}
-      ></UserTableList>
+      />
       <UserInfoModal
         userInfo={userInfo}
         isModalShow={isModalShow}
         onToggelModal={handleToggelModal}
         onSubmitUserInfo={handleSubmitUserInfo}
-      ></UserInfoModal>
+      />
     </Layout>
   )
 }

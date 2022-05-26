@@ -20,7 +20,7 @@ const ButtonView = () => {
   const [iconLoading, setIconLoading] = useState(false)
   return (
     <Layout className="button animated fadeIn">
-      <CustomBreadcrumb arr={['通用', '按钮']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['通用', '按钮']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />

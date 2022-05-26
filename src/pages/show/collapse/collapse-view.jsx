@@ -14,8 +14,8 @@ const text = `
   it can be found as a welcome guest in many households across the world.
 `
 
-function callback(key) {
-  console.log(key)
+function callback() {
+  // console.log(key)
 }
 
 const customPanelStyle = {
@@ -29,7 +29,7 @@ const customPanelStyle = {
 const CollapseView = () => {
   return (
     <Layout className="animated fadeIn">
-      <CustomBreadcrumb arr={['展示', '折叠面板']}></CustomBreadcrumb>
+      <CustomBreadcrumb arr={['展示', '折叠面板']} />
       <div className="base-style">
         <h3>何时使用</h3>
         <Divider />
@@ -80,7 +80,7 @@ const CollapseView = () => {
               onChange={callback}
               bordered={false}
               defaultActiveKey={['1']}
-              expandIcon={({ isActive }) => <CaretRightOutlined />}
+              expandIcon={() => <CaretRightOutlined />}
             >
               <Panel header="This is panel header 1" key="1" style={customPanelStyle}>
                 <Collapse defaultActiveKey="1">

@@ -11,7 +11,7 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { userInfo = {}, isModalShow, onToggelModal, onSubmitUserInfo } = props
+  const { userInfo = {}, isModalShow, onToggelModal } = props
   const formRef = useRef()
 
   const handleToggelModal = (status) => {
@@ -21,12 +21,14 @@ const UserInfoModal = (props) => {
   const hanldeSubmitUserInfo = () => {
     // to do
     // 提交用户信息修改
+    // onSubmitUserInfo
     console.log(formRef.current.getFieldsValue())
+    console.log(userInfo)
   }
 
   return (
     <Modal
-      title="Basic Modal"
+      title="修改用户信息"
       visible={isModalShow}
       footer={[
         <Button key="cancel" onClick={() => handleToggelModal(false)}>
@@ -38,16 +40,23 @@ const UserInfoModal = (props) => {
       ]}
     >
       <Form {...formItemLayout} ref={formRef}>
-        <Form.Item name="username" label="用户名">
-          <span>{userInfo.username}</span>
+        <Form.Item
+          name="username"
+          label="用户名"
+          initialValue={userInfo.username}
+          rules={[{ required: true, message: '请输入用户名!' }]}
+        >
+          <Input placeholder="请输入用户名" maxLength={11} />
         </Form.Item>
+
         <Form.Item
           name="mobile"
           label="手机号码"
+          initialValue={userInfo.mobile}
           rules={[
             { required: true, message: '请输入手机号码!' },
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const reg = /^1\d{10}$/
                 return !value || reg.test(value)
                   ? Promise.resolve()
@@ -55,7 +64,6 @@ const UserInfoModal = (props) => {
               },
             },
           ]}
-          initialValue={userInfo.mobile}
         >
           <Input placeholder="请输入手机号码" maxLength={11} />
         </Form.Item>
@@ -64,7 +72,7 @@ const UserInfoModal = (props) => {
           label="新密码"
           rules={[
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
                 if (value) {
                   if (value.length < 8 || value.length > 30) {
@@ -86,7 +94,7 @@ const UserInfoModal = (props) => {
           label="确认密码"
           rules={[
             {
-              validator: (_, value) => {
+              validator(_, value) {
                 const { password } = formRef.current.getFieldsValue()
                 if (password && password !== value) {
                   return Promise.reject('两次输入的密码不一致')
