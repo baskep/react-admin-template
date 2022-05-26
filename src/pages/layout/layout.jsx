@@ -98,7 +98,7 @@ const CustomLayout = () => {
     <Layout className="app">
       <BackTop />
       <CustomAside menuToggle={state.menuToggle} menu={menu} />
-      <Layout style={{ marginLeft: state.menuToggle ? '80px' : '200px', minHeight: '100vh' }}>
+      <Layout style={{ marginLeft: state.menuToggle ? '80px' : '200px', minHeight: '100vh', minWidth: '1200px' }}>
         <CustomHeader
           menuToggle={state.menuToggle}
           onMenuClick={handleMenuClick}

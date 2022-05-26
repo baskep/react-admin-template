@@ -39,17 +39,16 @@ const Login = () => {
   useEffect(() => {
     if (loginData.data && Object.keys(loginData.data).length) {
       const { data, status, msg } = loginData.data
-      const { token, auth, username, mobile } = data || {}
+      const { id, token, auth, username, mobile } = data || {}
       if (status === 200) {
         setUserToken(token)
-        setUserInfo({ auth, username, mobile })
+        setUserInfo({ id, auth, username, mobile })
         message.success('登录成功')
         history.push('/')
       } else {
         message.error(msg)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginData.data])
 
   return (

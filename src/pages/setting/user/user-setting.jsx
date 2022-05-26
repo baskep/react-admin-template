@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Layout, Divider, Steps, Button, Form, Input, Result, Message } from 'antd'
+import { Layout, Divider, Steps, Button, Form, Input, Result, Message, Spin } from 'antd'
 import cryptojs from 'crypto-js'
 
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
@@ -24,10 +24,16 @@ const UserInfoSetForm = (props) => {
   const { onSetCurrent, onSetFormData, userInfo } = props
 
   const formRef = useRef()
+  const isNameChange = useRef(false)
 
   const hanldeSubmitUserInfo = (values) => {
     onSetCurrent(1)
-    onSetFormData(values)
+    onSetFormData({ ...values, isNameChange: isNameChange.current })
+  }
+
+  const handleChangeUserName = () => {
+    const { username } = formRef.current.getFieldsValue()
+    isNameChange.current = userInfo.username !== username
   }
 
   return (
@@ -39,23 +45,23 @@ const UserInfoSetForm = (props) => {
           initialValue={userInfo.username}
           rules={[{ required: true, message: '请输入用户名!' }]}
         >
-          <Input placeholder="请输入用户名" maxLength={11} />
+          <Input placeholder="请输入用户名" maxLength={11} onChange={handleChangeUserName}/>
         </Form.Item>
 
         <Form.Item
           name="mobile"
           label="手机号码"
-          rules={[
-            { required: true, message: '请输入手机号码!' },
-            {
-              validator(_, value) {
-                const reg = /^1\d{10}$/
-                return !value || reg.test(value)
-                  ? Promise.resolve()
-                  : Promise.reject('手机号码格式不正确!')
-              },
+          rules={[{
+            required: true,
+            message: '请输入手机号码!',
+          }, {
+            validator(_, value) {
+              const reg = /^1\d{10}$/
+              return !value || reg.test(value)
+                ? Promise.resolve()
+                : Promise.reject('手机号码格式不正确!')
             },
-          ]}
+          } ]}
           initialValue={userInfo.mobile}
         >
           <Input placeholder="请输入手机号码" maxLength={11} />
@@ -63,39 +69,35 @@ const UserInfoSetForm = (props) => {
         <Form.Item
           name="password"
           label="新密码"
-          rules={[
-            {
-              validator(_, value) {
-                const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
-                if (value) {
-                  if (value.length < 8 || value.length > 30) {
-                    return Promise.reject('密码长度8-30位')
-                  }
-                  if (!passwordReg.test(value)) {
-                    return Promise.reject('密码必须同时包含大写字母、小写字母和数字')
-                  }
+          rules={[{
+            validator(_, value) {
+              const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/
+              if (value) {
+                if (value.length < 8 || value.length > 30) {
+                  return Promise.reject('密码长度8-30位')
                 }
-                return Promise.resolve()
-              },
+                if (!passwordReg.test(value)) {
+                  return Promise.reject('密码必须同时包含大写字母、小写字母和数字')
+                }
+              }
+              return Promise.resolve()
             },
-          ]}
+          }]}
         >
           <Input.Password placeholder="请再次输入密码" />
         </Form.Item>
         <Form.Item
           name="confirmPassword"
           label="确认密码"
-          rules={[
-            {
-              validator(_, value) {
-                const { password } = formRef.current.getFieldsValue()
-                if (password && password !== value) {
-                  return Promise.reject('两次输入的密码不一致')
-                }
-                return Promise.resolve()
-              },
+          rules={[{
+            validator(_, value) {
+              const { password } = formRef.current.getFieldsValue()
+              if (password && password !== value) {
+                return Promise.reject('两次输入的密码不一致')
+              }
+              return Promise.resolve()
             },
-          ]}
+          }]}
         >
           <Input.Password placeholder="请输入需要修改的密码，非必填项" />
         </Form.Item>
@@ -116,31 +118,37 @@ const UserInfoConfirmForm = (props) => {
   const [loading, setLoading] = useState(false)
 
   const hanldeConfirmUserInfo = async () => {
-    const { username } = userInfo
-    const { mobile, password } = formData
-    const encodePwd = cryptojs.MD5(password).toString()
+    const { id } = userInfo
+    const { username, mobile, password, isNameChange } = formData
 
     const param = {
+      id,
       username,
       mobile,
-      password: encodePwd,
+      isNameChange,
+    }
+
+    if (password) {
+      const encodePwd = cryptojs.MD5(password).toString()
+      param.password = encodePwd
     }
 
     setLoading(true)
     const res = await modifyUserInfo(param)
     const { status, msg } = res
+    setLoading(false)
+
     if (status !== 200) {
       Message.error(msg)
-    } else {
-      const userInfo = Object.assign({}, { ...getUserInfo() }, { mobile: param.mobile })
-      setUserInfo(userInfo)
+      return
     }
-    setLoading(false)
+    const curUserInfo = Object.assign({}, { ...userInfo }, { username, mobile })
+    setUserInfo(curUserInfo)
     onSetCurrent(2)
   }
 
   return (
-    <div>
+    <Spin spinning={loading}>
       <Form hideRequiredMark {...formItemLayout}>
         <Form.Item label="用户名">{formData && formData.username}</Form.Item>
         <Form.Item label="联系方式">{formData && formData.mobile}</Form.Item>
@@ -150,14 +158,13 @@ const UserInfoConfirmForm = (props) => {
           <Button
             className="form-steps2-button"
             type="primary"
-            loading={loading}
             onClick={hanldeConfirmUserInfo}
           >
             确定
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </Spin>
   )
 }
 
@@ -166,7 +173,7 @@ const UserInfoSubmitForm = (props) => {
   return (
     <Result
       status="success"
-      title="提交成功!"
+      title="修改成功!"
       extra={[
         <Button type="primary" key="console" onClick={() => onSetCurrent(0)}>
           重新修改
@@ -180,6 +187,7 @@ const FormStepView = () => {
   const [current, setCurrent] = useState(0)
   const [formData, setFormData] = useState(null)
   const userInfo = getUserInfo()
+
   return (
     <Layout className="animated fadeIn">
       <div>
@@ -207,7 +215,9 @@ const FormStepView = () => {
               onSetCurrent={setCurrent}
             />
           )}
-          {current === 2 && <UserInfoSubmitForm onSetCurrent={setCurrent} />}
+          {current === 2 && (
+            <UserInfoSubmitForm onSetCurrent={setCurrent} />
+          )}
         </div>
       </div>
     </Layout>

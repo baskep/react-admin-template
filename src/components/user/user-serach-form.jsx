@@ -4,7 +4,7 @@ import { Form, Input, Row, Col, Select, Button } from 'antd'
 const { Option } = Select
 
 const UserSearchForm = (props) => {
-  const { onUserSearch, onModifyUserInfo, onSetUserStatus } = props
+  const { onUserSearch, onAddUserInfo, onModifyUserInfo, onSetUserStatus } = props
   const formRef = useRef()
 
   return (
@@ -34,6 +34,14 @@ const UserSearchForm = (props) => {
               <Form.Item>
                 <Button type="primary" htmlType="submit">
                   搜索
+                </Button>
+                <Button
+                  type="primary"
+                  className="search-operation-button"
+                  onClick={onAddUserInfo}
+                  style={{ marginLeft: '80px' }}
+                >
+                  新增账号信息
                 </Button>
                 <Button
                   type="primary"

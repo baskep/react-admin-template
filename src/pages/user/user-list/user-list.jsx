@@ -5,7 +5,8 @@ import { cloneDeep } from 'lodash'
 import CustomBreadcrumb from '@/components/layout/custom-breadcrumb'
 import UserSearchForm from '@/components/user/user-serach-form'
 import UserTableList from '@/components/user/user-table-list'
-import UserInfoModal from '@/components/user/user-info-modal'
+import UserInfoAddModal from '@/components/user/user-info-add-modal'
+import UserInfoEditModal from '@/components/user/user-info-edit-modal'
 
 import { getUserList, setUserStatus } from '@/utils/api'
 import useFetch from '@/utils/hooks'
@@ -22,7 +23,8 @@ const UserList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
   const [current, setCurrent] = useState(1)
   const [searchParam, setSearchParam] = useState(defaultSearchParam)
-  const [isModalShow, setIsModalShow] = useState(false)
+  const [isAddModalShow, setIsAddModalShow] = useState(false)
+  const [isEditModalShow, setIsModifyModalShow] = useState(false)
   const [userList, fetchUserList] = useFetch(getUserList, {})
 
   useEffect(() => {
@@ -51,8 +53,12 @@ const UserList = () => {
     setCurrent(1)
   }
 
-  const handleToggelModal = (status) => {
-    setIsModalShow(status)
+  const handleToggelAddModal = (status) => {
+    setIsAddModalShow(status)
+  }
+
+  const handleToggelEditModal = (status) => {
+    setIsModifyModalShow(status)
   }
 
   const handleModifyUserInfo = () => {
@@ -61,7 +67,7 @@ const UserList = () => {
     } else if (selectedRowKeys.length !== 1) {
       Message.warning('每次只能修改一条信息')
     } else {
-      handleToggelModal(true)
+      handleToggelEditModal(true)
     }
   }
 
@@ -98,9 +104,9 @@ const UserList = () => {
     }
   }
 
-  // todo 更改用户信息
-  const handleSubmitUserInfo = (value) => {
-    console.log(value)
+  const handleCloseEditModal = () => {
+    setIsModifyModalShow(false)
+    handleReload()
   }
 
   return (
@@ -110,6 +116,7 @@ const UserList = () => {
         onUserSearch={handleUserSearch}
         onModifyUserInfo={handleModifyUserInfo}
         onSetUserStatus={handleSetUserStatus}
+        onAddUserInfo={() => handleToggelAddModal(true)}
       />
       <UserTableList
         selectedRowKeys={selectedRowKeys}
@@ -118,12 +125,19 @@ const UserList = () => {
         onSetSelectedRowKeys={handleSetSelectedRowKeys}
         onPageChange={handlePageChange}
       />
-      <UserInfoModal
-        userInfo={userInfo}
-        isModalShow={isModalShow}
-        onToggelModal={handleToggelModal}
-        onSubmitUserInfo={handleSubmitUserInfo}
+      <UserInfoAddModal
+        isAddModalShow={isAddModalShow}
+        onToggelEditModal={handleToggelEditModal}
+        onCloseEditModal={handleCloseEditModal}
       />
+      {isEditModalShow && (
+        <UserInfoEditModal
+          userInfo={userInfo}
+          isEditModalShow={isEditModalShow}
+          onToggelEditModal={handleToggelEditModal}
+          onCloseEditModal={handleCloseEditModal}
+        />
+      )}
     </Layout>
   )
 }
