@@ -124,7 +124,7 @@ const UserInfoModal = (props) => {
               },
             }]}
           >
-            <Input.Password placeholder="请再次输入密码" />
+            <Input.Password placeholder="请输入密码" />
           </Form.Item>
           <Form.Item
             name="confirmPassword"
@@ -139,7 +139,7 @@ const UserInfoModal = (props) => {
               },
             }]}
           >
-            <Input.Password placeholder="请输入需要修改的密码，非必填项" />
+            <Input.Password placeholder="请再次输入密码" />
           </Form.Item>
         </Form>
       </Spin>

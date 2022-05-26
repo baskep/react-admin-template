@@ -60,7 +60,7 @@ const UserList = () => {
 
   const handleModifyUserInfo = () => {
     if (!selectedRowKeys.length) {
-      Message.warning('请选中所需要修改的信息')
+      Message.warning('请选中需要修改的信息')
     } else if (selectedRowKeys.length !== 1) {
       Message.warning('每次只能修改一条信息')
     } else {

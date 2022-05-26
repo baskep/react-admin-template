@@ -13,6 +13,15 @@ const columns = [
     key: 'mobile',
   },
   {
+    title: '角色',
+    dataIndex: 'auth',
+    key: 'auth',
+    render(record) {
+      console.log(record)
+      return record === 1 ? '超级管理员' : '管理员'
+    },
+  },
+  {
     title: '账号状态',
     dataIndex: 'status',
     key: 'status',
