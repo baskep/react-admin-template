@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo } from 'react'
 import { Button, Form, Input, Modal, Message, Spin, Select } from 'antd'
 import cryptojs from 'crypto-js'
 
-import { setUserInfo } from '@/utils/auth'
+import { setUserInfo, getUserInfo } from '@/utils/auth'
 import { modifyUserInfo } from '@/utils/api'
 
 const { Option } = Select
@@ -17,12 +17,17 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { curLoginUser, userInfo, isEditModalShow, onToggleEidtModal, onCloseEditModal } = props
+  const { userInfo, isEditModalShow, onToggleEidtModal, onCloseEditModal } = props
 
   const [loading, setLoading] = useState(false)
 
   const formRef = useRef()
   const isNameChange = useRef(false)
+  const curUserInfo = getUserInfo()
+
+  const isCurrentUser = useMemo(() => {
+    return curUserInfo.id === userInfo.id
+  }, [curUserInfo, userInfo])
 
   const hanldeSubmitUserInfo = () => {
     formRef.current.validateFields()
@@ -36,7 +41,7 @@ const UserInfoModal = (props) => {
           id,
           username,
           mobile,
-          auth: isNaN(auth) ? curLoginUser.auth : auth,
+          auth: isNaN(auth) ? curUserInfo.auth : auth,
           isNameChange: isNameChange.current,
         }
 
@@ -55,8 +60,10 @@ const UserInfoModal = (props) => {
           return
         }
         Message.success('修改账号信息成功')
-        const curUserInfo = Object.assign({}, { ...userInfo }, { username, mobile })
-        setUserInfo(curUserInfo)
+        if (isCurrentUser) {
+          const curUserInfo = Object.assign({}, { ...userInfo }, { username, mobile })
+          setUserInfo(curUserInfo)
+        }
         onCloseEditModal()
       })
       .catch(() => { })
@@ -66,11 +73,6 @@ const UserInfoModal = (props) => {
     const { username } = formRef.current.getFieldsValue()
     isNameChange.current = userInfo.username !== username
   }
-
-  const isCurrentUser = useMemo(() => {
-    const curUserInfo = curLoginUser
-    return curUserInfo.id === userInfo.id
-  }, [curLoginUser, userInfo])
 
   return (
     <Modal
