@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getUserToken, removeUserToken, removeUserInfo } from '@/utils/auth'
 import { Message } from 'antd'
 
-//创建一个axios示例
+// 创建一个axios示例
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8000/api/' : '',
   timeout: 5000,
@@ -16,7 +16,6 @@ service.interceptors.request.use(
     return config
   },
   (error) => {
-    // eslint-disable-next-line no-console
     console.log(error)
     Promise.reject(error)
   },
