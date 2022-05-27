@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
-import { Button, Form, Input, Modal, Message, Spin } from 'antd'
+import { Button, Form, Input, Modal, Message, Spin, Select } from 'antd'
 import cryptojs from 'crypto-js'
 
 import { addUserInfo } from '@/utils/api'
+
+const { Option } = Select
 
 const formItemLayout = {
   labelCol: {
@@ -14,7 +16,7 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { isAddModalShow, onCloseAddModal } = props
+  const { isAddModalShow, onToggleAddModal, onCloseAddModal } = props
 
   const [loading, setLoading] = useState(false)
 
@@ -24,11 +26,12 @@ const UserInfoModal = (props) => {
     formRef.current.validateFields()
       .then(async(values) => {
         const formData = values
-        const { username, mobile, password } = formData
+        const { username, mobile, password, auth } = formData
 
         const param = {
           username,
           mobile,
+          auth,
           password: cryptojs.MD5(password).toString(),
         }
 
@@ -49,17 +52,17 @@ const UserInfoModal = (props) => {
 
   return (
     <Modal
-      title="修改账号信息"
+      title="新增账号信息"
       visible={isAddModalShow}
       footer={[
-        <Button key="cancel" onClick={onCloseAddModal}>
+        <Button key="cancel" onClick={onToggleAddModal}>
           取消
         </Button>,
         <Button key="confirm" type="primary" onClick={() => hanldeSubmitUserInfo()}>
           确定
         </Button>,
       ]}
-      onCancel={onCloseAddModal}
+      onCancel={onToggleAddModal}
     >
       <Spin spinning={loading}>
         <Form {...formItemLayout} ref={formRef}>
@@ -88,6 +91,22 @@ const UserInfoModal = (props) => {
           >
             <Input placeholder="请输入手机号码" maxLength={11} />
           </Form.Item>
+
+          <Form.Item
+            name="auth"
+            label="角色"
+            initialValue={0}
+            rules={[{
+              required: true,
+              message: '请选择账号角色!',
+            }]}
+          >
+            <Select>
+              <Option value={0}>普通用户</Option>
+              <Option value={1}>超级管理员</Option>
+            </Select>
+          </Form.Item>
+
           <Form.Item
             name="password"
             label="新密码"
@@ -111,6 +130,7 @@ const UserInfoModal = (props) => {
           >
             <Input.Password placeholder="请输入密码" />
           </Form.Item>
+
           <Form.Item
             name="confirmPassword"
             label="确认密码"

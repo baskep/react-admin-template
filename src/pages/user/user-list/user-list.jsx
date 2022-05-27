@@ -8,6 +8,7 @@ import UserTableList from '@/components/user/user-table-list'
 import UserInfoAddModal from '@/components/user/user-info-add-modal'
 import UserInfoEditModal from '@/components/user/user-info-edit-modal'
 
+import { getUserInfo } from '@/utils/auth'
 import { getUserList, setUserStatus } from '@/utils/api'
 import useFetch from '@/utils/hooks'
 
@@ -17,6 +18,8 @@ const defaultSearchParam = {
   pageInfo: { pageNum: 1, pageSize: 10 },
   searchValue: {},
 }
+
+const curLoginUser = getUserInfo()
 
 const UserList = () => {
   const [selectedValues, setSelectedValues] = useState([])
@@ -126,13 +129,16 @@ const UserList = () => {
         <UserInfoAddModal
           isAddModalShow={isAddModalShow}
           onCloseAddModal={handleCloseAddModal}
+          onToggleAddModal={() => setIsAddModalShow(false)}
         />
       )}
       {isEditModalShow && (
         <UserInfoEditModal
+          curLoginUser={curLoginUser}
           userInfo={userInfo}
           isEditModalShow={isEditModalShow}
           onCloseEditModal={handleCloseEditModal}
+          onToggleEidtModal={() => setIsEditModalShow(false)}
         />
       )}
     </Layout>

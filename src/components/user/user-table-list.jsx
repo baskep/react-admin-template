@@ -17,8 +17,7 @@ const columns = [
     dataIndex: 'auth',
     key: 'auth',
     render(record) {
-      console.log(record)
-      return record === 1 ? '超级管理员' : '管理员'
+      return record === 1 ? '超级管理员' : '普通用户'
     },
   },
   {
@@ -54,7 +53,6 @@ const UserTableList = (props) => {
       selectedRowKeys,
       onChange: onSetSelectedRowKeys,
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRowKeys])
 
   return (

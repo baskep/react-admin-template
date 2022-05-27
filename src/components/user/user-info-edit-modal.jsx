@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react'
-import { Button, Form, Input, Modal, Message, Spin } from 'antd'
+import React, { useRef, useState, useMemo } from 'react'
+import { Button, Form, Input, Modal, Message, Spin, Select } from 'antd'
 import cryptojs from 'crypto-js'
 
 import { setUserInfo } from '@/utils/auth'
 import { modifyUserInfo } from '@/utils/api'
+
+const { Option } = Select
 
 const formItemLayout = {
   labelCol: {
@@ -15,7 +17,7 @@ const formItemLayout = {
 }
 
 const UserInfoModal = (props) => {
-  const { userInfo, isEditModalShow, onCloseEditModal } = props
+  const { curLoginUser, userInfo, isEditModalShow, onToggleEidtModal, onCloseEditModal } = props
 
   const [loading, setLoading] = useState(false)
 
@@ -27,12 +29,14 @@ const UserInfoModal = (props) => {
       .then(async(values) => {
         const { id } = userInfo
         const formData = values
-        const { username, mobile, password } = formData
+
+        const { username, mobile, password, auth } = formData
 
         const param = {
           id,
           username,
           mobile,
+          auth: isNaN(auth) ? curLoginUser.auth : auth,
           isNameChange: isNameChange.current,
         }
 
@@ -55,7 +59,7 @@ const UserInfoModal = (props) => {
         setUserInfo(curUserInfo)
         onCloseEditModal()
       })
-      .catch(() => {})
+      .catch(() => { })
   }
 
   const handleChangeUserName = () => {
@@ -63,19 +67,24 @@ const UserInfoModal = (props) => {
     isNameChange.current = userInfo.username !== username
   }
 
+  const isCurrentUser = useMemo(() => {
+    const curUserInfo = curLoginUser
+    return curUserInfo.id === userInfo.id
+  }, [curLoginUser, userInfo])
+
   return (
     <Modal
       title="修改账号信息"
       visible={isEditModalShow}
       footer={[
-        <Button key="cancel" onClick={onCloseEditModal}>
+        <Button key="cancel" onClick={onToggleEidtModal}>
           取消
         </Button>,
         <Button key="confirm" type="primary" onClick={() => hanldeSubmitUserInfo()}>
           确定
         </Button>,
       ]}
-      onCancel={onCloseEditModal}
+      onCancel={onToggleEidtModal}
     >
       <Spin spinning={loading}>
         <Form {...formItemLayout} ref={formRef}>
@@ -106,6 +115,24 @@ const UserInfoModal = (props) => {
           >
             <Input placeholder="请输入手机号码" maxLength={11} />
           </Form.Item>
+
+          {!isCurrentUser && (
+            <Form.Item
+              name="auth"
+              label="角色"
+              initialValue={userInfo.auth}
+              rules={[{
+                required: true,
+                message: '请选择账号角色!',
+              }]}
+            >
+              <Select>
+                <Option value={0}>普通用户</Option>
+                <Option value={1}>超级管理员</Option>
+              </Select>
+            </Form.Item>
+          )}
+
           <Form.Item
             name="password"
             label="新密码"
@@ -126,6 +153,7 @@ const UserInfoModal = (props) => {
           >
             <Input.Password placeholder="请输入密码" />
           </Form.Item>
+
           <Form.Item
             name="confirmPassword"
             label="确认密码"
