@@ -13,7 +13,7 @@ const CustomAside = (props) => {
       <div className="logo">
         <a
           rel="noopener noreferrer"
-          href="https://github.com/xitd/react-admin-template"
+          href="https://github.com/baskep/react-admin-template"
           target="_blank"
         >
           <img src={logo} alt="logo" />
