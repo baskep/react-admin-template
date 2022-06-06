@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { getUserToken, removeUserToken, removeUserInfo } from '@/utils/auth'
-import { Message } from 'antd'
 
 // 创建一个axios示例
 const service = axios.create({
