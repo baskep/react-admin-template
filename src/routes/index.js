@@ -4,8 +4,7 @@ import loadable from '../utils/loadable'
 const Index = loadable(() => import(/* webpackChunkName: 'index' */ '../pages/index'))
 
 // 用户管理
-const UserList = loadable(() =>
-  import(/* webpackChunkName: 'userList' */ '../pages/user/user-list'))
+const UserList = loadable(() => import(/* webpackChunkName: 'userList' */ '../pages/user/user-list'))
 
 // 通用
 const ButtonView = loadable(() => import(/* webpackChunkName: 'button' */ '../pages/common/button'))

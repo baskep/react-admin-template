@@ -1,6 +1,6 @@
 ## 描述
 
-此项目是基于`react`搭建的后台管理系统模板，是基于[react-admin](https://github.com/ltadpoles/react-admin)改造。项目主要技术栈为react-hooks + antd，此项目未添加状态管理库，如果需要请自行构建`redux`或者使用`useContext`
+此项目是基于`react`搭建的后台管理系统模板，项目主要技术栈为react-hooks + antd，此项目未添加状态管理库，如果需要请自行构建`redux`或者使用`useContext`
 
 
 
