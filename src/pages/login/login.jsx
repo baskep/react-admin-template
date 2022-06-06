@@ -84,6 +84,10 @@ const Login = () => {
               >
                 登录
               </Button>
+
+              <div style={{ marginTop: '20px', color: '#999' }}>
+                <span>用户名: admin&nbsp;&nbsp;&nbsp;&nbsp;密码: 随便输入</span>
+              </div>
             </Form.Item>
           </Form>
         </div>
