@@ -15,13 +15,13 @@ const menu = [
     auth: [1],
     Icon: HomeOutlined,
   },
-  {
-    title: '用户管理',
-    key: '/user',
-    auth: [1],
-    subs: [{ title: '用户列表', key: '/user/list' }],
-    Icon: UserOutlined,
-  },
+  // {
+  //   title: '用户管理',
+  //   key: '/user',
+  //   auth: [1],
+  //   subs: [{ title: '用户列表', key: '/user/list' }],
+  //   Icon: UserOutlined,
+  // },
   {
     title: '通用',
     key: '/common',

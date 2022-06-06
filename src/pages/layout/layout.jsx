@@ -45,7 +45,6 @@ const CustomLayout = () => {
       return []
     }
     return getMenu(menus)
-
   })
 
   const [state, dispatch] = useReducer(reducer, { menuToggle: false })

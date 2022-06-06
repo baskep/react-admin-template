@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Dropdown, Layout, Avatar, Badge } from 'antd'
 import {
-  EditOutlined,
   SettingOutlined,
   LoginOutlined,
   MenuUnfoldOutlined,
@@ -19,12 +18,6 @@ const CustomHeader = (props) => {
     <Menu>
       <Menu.ItemGroup title="设置">
         <Menu.Divider />
-        <Menu.Item key="personel-setting">
-          <span onClick={() => onSettingClick('user')}>
-            <EditOutlined />
-            &nbsp; 账号设置
-          </span>
-        </Menu.Item>
         <Menu.Item key="system-setting">
           <span onClick={() => onSettingClick('system')}>
             <SettingOutlined />
